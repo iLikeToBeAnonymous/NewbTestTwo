@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>Export HTML Table to CSV</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+</head> 
+
+<body>
+<!-- Container for body of page   -->
+<div class="container-fluid">
+<!--  Opening div for clock row  -->
+  <div class="container shadow p-5 mb-5">  
+  <div class="row">
+        <!--   Clock jumbotron   -->
+            <div class="col-sm shadow mb-5 p-2">
+                <h4>Current Local Date/Time:</h4>
+                <pre><h4 id="localDateTime" ><div class="spinner-border text-primary"></div></h4></pre>
+            <!--  Colosing div for col1 -->
+            </div>
+
+            <div class="col-sm shadow mb-5 p-2">
+                <h4>Current UTC Date/Time (ISO Format):</h4>
+                <pre><h4 id="datetime"><div class="spinner-border text-primary"></div></h4></pre>
+            <!-- Closing div for col2           -->
+            </div>
+<!-- Clock jumbotron close -->
+      </div> 
+<!--   closing div for clock row   -->      
+    </div>
+<!-- End of clock row     -->
+<!-- To-Do List container -->
+		<div class="shadow p-2 mb-2 container-fluid">
+    	   <h5 id="ToDo List Title">To Do List:</h5>
+    	   <ul id="toDoListBod">
+    	        <li>Next, you should figure out how to load a csv into the table</li>
+    	        <li>Convert current working code so it implements MORE JQuery</li>
+                <li>Look into "multi-part forms"</li>
+                <li>Submit the form with AJAX, but without actually performing the default action.<br>
+                Instead, of sending the form data to the server, you want it to get interrupted<br>and sent to code which will modify the web page on the client side.</li>
+                <li>Add a listener to the form where on submit, you prevent default</li>
+                <li><a href="https://api.jquery.com/submit/" target="_blank"rel="noopener">Read about JQuery "submit" here...</a></li>
+                <li><a href="https://symfony.com/" target="_blank"rel="noopener">Symphony framework</a></li>
+                <li>Kenny says that using an Express server in a production setting is the way to go</li>
+                <li>Host a simple web app using nodejs/Express and MongoDB as the database for it.</li>
+                <li><a href="https://expressjs.com/en/guide/database-integration.html#mongodb" target="_blank"rel="noopener">MongoDB driver </a>for Express server (and how to install it)</li>
+                <li><a href="https://www.mongodb.com/products/mobile" target="_blank"rel="noopener">MongoDB mobile app info</a>(for mobile apps, but I think it needs the "paid-for" version)</li>
+                <li><a href="https://alligator.io/nodejs/express-basics/" target="_blank" rel="noopener">Another Express local server example</a></li>
+    	   </ul>
+		</div>
+<!-- End To-Do List container -->
+  
+  
+
+  <!-- Button container -->
+  <div class="shadow p-2 mb-2  container-fluid">         
+    <div class="shadow p-1 mb-1 btn-group">
+      
+        <button id="exportTableToCSV" type="button" class="btn btn-secondary">Export HTML table to CSV file</button>
+
+        <button id="toggleToDoList" type="button" class="btn btn-secondary">Toggle To-Do List</button>
+      
+        <button id="toggleTable" type="button" class="btn btn-secondary">Toggle Table</button>
+
+        <button id="loadFileButton" type="button" class="btn btn-secondary">
+        Load File 
+        <span class="badge badge-warning">(doesn't<br>work yet)</span>
+        </button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Navigation
+            </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/index.html">Main Pg</a>
+                <a class="dropdown-item" href="/index2.html">Pg 2</a>
+              </div>
+        </div>
+    </div>
+  </div>
+<!-- End Button container -->
+<!-- Table gets displayed here -->
+<table id="testTable" class="shadow-lg p-2 mb-2 table table-hover table-striped table-bordered table-light">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Item</th>
+            <th>Options</th>
+            <th>Qty</th>
+            <th>Unit Price</th>
+            <th>Subtotal</th>
+            <th>Barcode</th>
+        </tr>
+    </thead>
+  
+    <tbody>
+        <tr>
+            <td>11-1110B-LPR/DPR</td>
+            <td>Derby Double Color Cotton Lead with Brass Bolt Snap
+                <br><i class="line-note"></i></td>
+            <td>
+              <ul>
+                <li>Color: Light Purple / Dark Purple</li>
+                <li>Size: 5/8 Inch X 10 Ft</li>
+              </ul>
+            </td>
+            <td>100</td>
+            <td>$1.63</td>
+            <td>$163.00</td>
+            <td>B00AZ0V4NM</td>
+        </tr>
+    
+    
+        <tr>
+            <td>11-1110B-NV/RD</td>
+            <td>Derby Double Color Cotton Lead with Brass Bolt Snap
+                <br><i class="line-note"></i></td>
+            <td>Color: Navy/Red
+                <br>Size: 5/8 Inch X 10 Ft</td>
+            <td>50</td>
+            <td>$1.63</td>
+            <td>$81.50</td>
+            <td>B00AZ0V52M</td>
+        </tr>
+    
+    
+        <tr>
+            <td>11-1110B-RB/LtB</td>
+            <td>Derby Double Color Cotton Lead with Brass Bolt Snap
+                <br><i class="line-note"></i></td>
+            <td>Color: Royal Blue/Light Blue
+                <br>Size: 5/8 Inch X 10 Ft</td>
+            <td>50</td>
+            <td>$1.63</td>
+            <td>$81.50</td>
+            <td>B007VCLHCU</td>
+        </tr>
+    
+    
+        <tr>
+            <td>11-1110Pk/Dpk</td>
+            <td>Derby Double Color Cotton Lead with Brass Bolt Snap
+                <br><i class="line-note"></i></td>
+            <td>Color: Pink/Dark Pink
+                <br>Size: 5/8 Inch X 10 Ft</td>
+            <td>50</td>
+            <td>$1.63</td>
+            <td>$81.50</td>
+            <td>B007VCLH1Q</td>
+        </tr>
+    
+    
+        <tr>
+            <td>11-1135-RD/WH/BL</td>
+            <td>TRI-CLR COT LEAD - BRS BLT SNAP- 10ft
+                <br><i class="line-note"></i></td>
+            <td>Color: Red/White/Blue
+                <br>Size: 5/8in x 10ft</td>
+            <td>50</td>
+            <td>$1.63</td>
+            <td>$81.50</td>
+            <td>B01GW61MBG</td>
+        </tr>
+    
+    
+        <tr>
+            <td>17-1704BK-F</td>
+            <td>Tahoe Double Layer Nylon Headstall with Reins
+                <br><i class="line-note"></i></td>
+            <td>Color: Black
+                <br>Size: Full</td>
+            <td>100</td>
+            <td>$3.77</td>
+            <td>$377.00</td>
+            <td>B00IDG2WEK</td>
+        </tr>
+    
+    
+        <tr>
+            <td>17-1791PAT-F</td>
+            <td>American Flag Patriotic Nylon Headstall &amp; Breast Collar Set by Tahoe
+                <br><i class="line-note"></i></td>
+            <td>Color: Red/White/Blue
+                <br>Size: Full</td>
+            <td>24</td>
+            <td>$4.62</td>
+            <td>$110.88</td>
+            <td>B00IDG34YC</td>
+        </tr>
+    
+    
+        <tr>
+            <td>20-4497</td>
+            <td>Engraved Stirrups for Western Saddles by Tahoe
+                <br><i class="line-note"></i></td>
+            <td>
+                <br>Size: 5.25 inch</td>
+            <td>30</td>
+            <td>$8.50</td>
+            <td>$255.00</td>
+            <td>B00HKJ3OIE</td>
+        </tr>
+    
+    
+        <tr>
+            <td>30-3034-HV-C</td>
+            <td>Derby Premium Triple Stitched Adjustable Leather Halters
+                <br><i class="line-note"></i></td>
+            <td>Color: D.Brown
+                <br>Size: Cob</td>
+            <td>75</td>
+            <td>$11.48</td>
+            <td>$861.00</td>
+            <td>B014R29UTI</td>
+        </tr>
+    
+    
+        <tr>
+            <td>30-3034PFS-HV-C</td>
+            <td>Fancy Stitch Padded Adjustable Leather Halter Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: Dark Brown
+                <br>Size: Cob</td>
+            <td>12</td>
+            <td>$14.25</td>
+            <td>$171.00</td>
+            <td>B00BL8O0OC</td>
+        </tr>
+    
+    
+        <tr>
+            <td>30-3034PFS-HV-F</td>
+            <td>Fancy Stitch Padded Adjustable Leather Halter Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: Dark Brown
+                <br>Size: Full</td>
+            <td>36</td>
+            <td>$14.25</td>
+            <td>$513.00</td>
+            <td>B009ISY61O</td>
+        </tr>
+    
+    
+        <tr>
+            <td>41-4030-HPK</td>
+            <td>Derby Polo Wraps Set of 4 with Velcro
+                <br><i class="line-note"></i></td>
+            <td>Color: Dark Pink
+                <br>Size: 4.5 Inch x 9 Ft</td>
+            <td>25</td>
+            <td>$2.31</td>
+            <td>$57.75</td>
+            <td>B01GQNAYZA</td>
+        </tr>
+    
+    
+        <tr>
+            <td>41-4030-RD</td>
+            <td>Derby Polo Wraps Set of 4 with Velcro
+                <br><i class="line-note"></i></td>
+            <td>Color: Red
+                <br>Size: 4.5 Inch x 9 Ft</td>
+            <td>40</td>
+            <td>$2.31</td>
+            <td>$92.40</td>
+            <td>B00DF5PRQ4</td>
+        </tr>
+    
+    
+        <tr>
+            <td>41-4030-WH</td>
+            <td>Derby Polo Wraps Set of 4 with Velcro
+                <br><i class="line-note"></i></td>
+            <td>Color: White
+                <br>Size: 4.5 Inch x 9 Ft</td>
+            <td>50</td>
+            <td>$2.31</td>
+            <td>$115.50</td>
+            <td>B00EKMEUGY</td>
+        </tr>
+    
+    
+        <tr>
+            <td>61-1426-PK</td>
+            <td>Mini Horse Canvas Contour Cut Western Saddle Pad by Tahoe
+                <br><i class="line-note"></i></td>
+            <td>Color: Pink
+                <br>Size: 19" X 19"</td>
+            <td>24</td>
+            <td>$4.48</td>
+            <td>$107.52</td>
+            <td>B01M7MDKK6</td>
+        </tr>
+    
+    
+        <tr>
+            <td>61-1428-RBL</td>
+            <td>Canvas Contour Cut Western Saddle Pad by Tahoe
+                <br><i class="line-note"></i></td>
+            <td>Color: Royal Blue
+                <br>Size: 32" X 34"</td>
+            <td>30</td>
+            <td>$14.40</td>
+            <td>$432.00</td>
+            <td>B00IJGGSCG</td>
+        </tr>
+    
+    
+        <tr>
+            <td>71-7113N-BK</td>
+            <td>Slow Feed Hay Bag Nylon with Super Tough Bottom by Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: Black
+                <br>Size: 25 X 21 X 7 in</td>
+            <td>400</td>
+            <td>$9.18</td>
+            <td>$3,672.00</td>
+            <td>B00YASE27A</td>
+        </tr>
+    
+    
+        <tr>
+            <td>71-7113N-RBL</td>
+            <td>Slow Feed Hay Bag Nylon with Super Tough Bottom by Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: Royal Blue
+                <br>Size: 25 X 21 X 7 in</td>
+            <td>300</td>
+            <td>$9.18</td>
+            <td>$2,754.00</td>
+            <td>B00YASE28E</td>
+        </tr>
+    
+    
+        <tr>
+            <td>71-7121-RBL</td>
+            <td>Superior Slow Eater Slow Feed Soft Mesh Hay Net by Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: RBL/BLK
+                <br>Size: 42 Inch</td>
+            <td>500</td>
+            <td>$2.81</td>
+            <td>$1,405.00</td>
+            <td>B00D9USJ56</td>
+        </tr>
+    
+    
+        <tr>
+            <td>71-7125BK</td>
+            <td>Derby Super Tough 4 Sided Slow Feed Hay Bag Nylon Patented with Warranty
+                <br><i class="line-note"></i></td>
+            <td>Color: Black
+                <br>Size: 22 X 25 X 8 Inch</td>
+            <td>200</td>
+            <td>$12.66</td>
+            <td>$2,532.00</td>
+            <td>B00NMR4COS</td>
+        </tr>
+    
+    
+        <tr>
+            <td>71-7127BK</td>
+            <td>Derby Supreme 4 Sided Slow Feed Hay Bag Nylon Patented with Warranty
+                <br><i class="line-note"></i></td>
+            <td>Color: Black
+                <br>Size: 24 X 24 X 9 Inch</td>
+            <td>25</td>
+            <td>$12.15</td>
+            <td>$303.75</td>
+            <td>B00XIBXG5Y</td>
+        </tr>
+    
+    
+        <tr>
+            <td>71-7129RD</td>
+            <td>Quik-Fil Slow Feed Hay Net Extra Large by Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: Red
+                <br>Size: 48 Inch</td>
+            <td>24</td>
+            <td>$5.30</td>
+            <td>$127.20</td>
+            <td>B00NMR51J8</td>
+        </tr>
+    
+    
+        <tr>
+            <td>71-7133RBL</td>
+            <td>Derby Grazer 4 Sided 3/4 Bale Slow Feed Hay Bag
+                <br><i class="line-note"></i></td>
+            <td>Color: Royal Blue
+                <br>Size: 18 X 19 X 26 Inch</td>
+            <td>25</td>
+            <td>$19.28</td>
+            <td>$482.00</td>
+            <td>B00UJXCNOO</td>
+        </tr>
+    
+    
+        <tr>
+            <td>71-7193-BK</td>
+            <td>Hankering Horse Slow Feed Small Bale Net by Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: Black
+                <br>Size: 57 Inch</td>
+            <td>50</td>
+            <td>$3.37</td>
+            <td>$168.50</td>
+            <td>B00DF7D5SO</td>
+        </tr>
+    
+    
+        <tr>
+            <td>81-4019BK</td>
+            <td>Premium Bridle Halter Carry Bag Padded by Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: Black</td>
+            <td>36</td>
+            <td>$6.24</td>
+            <td>$224.64</td>
+            <td>B008L1FC26</td>
+        </tr>
+    
+    
+        <tr>
+            <td>81-8023BK</td>
+            <td>English Dressage Saddle Carry Bag Padded by Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: Black</td>
+            <td>22</td>
+            <td>$15.98</td>
+            <td>$351.56</td>
+            <td>B00HWVU5DC</td>
+        </tr>
+    
+    
+        <tr>
+            <td>81-8025-OR</td>
+            <td>Tahoe Single Rope Carry Bag
+                <br><i class="line-note"></i></td>
+            <td>Color: Orange
+                <br>Size: 20</td>
+            <td>20</td>
+            <td>$3.05</td>
+            <td>$61.00</td>
+            <td>B00NMLPQ7G</td>
+        </tr>
+    
+    
+        <tr>
+            <td>81-8135-BK</td>
+            <td>Tahoe Saddle Blankets Pads Carry Bag Extra Large
+                <br><i class="line-note"></i></td>
+            <td>Color: Black
+                <br>Size: 34 X 22-1/2 X 7</td>
+            <td>30</td>
+            <td>$7.41</td>
+            <td>$222.30</td>
+            <td>B008L1FD8E</td>
+        </tr>
+    
+    
+        <tr>
+            <td>90-9018PAT-F</td>
+            <td>American Flag Patriotic Halter by Derby Originals
+                <br><i class="line-note"></i></td>
+            <td>Color: Red/White/Blue
+                <br>Size: Full</td>
+            <td>25</td>
+            <td>$3.54</td>
+            <td>$88.50</td>
+            <td>B009ISYEVG</td>
+        </tr>
+    
+    
+        <tr>
+            <td>90-9050LM-CF</td>
+            <td>Derby Nylon Cattle Halter for Barn and Turnout
+                <br><i class="line-note"></i></td>
+            <td>Color: Lime Green
+                <br>Size: Calf</td>
+            <td>30</td>
+            <td>$1.73</td>
+            <td>$51.90</td>
+            <td>B014518T3E</td>
+        </tr>
+    
+    
+        <tr>
+            <td>90-9050LM-NB</td>
+            <td>Derby Nylon Cattle Halter for Barn and Turnout
+                <br><i class="line-note"></i></td>
+            <td>Color: Lime Green
+                <br>Size: Newborn</td>
+            <td>30</td>
+            <td>$1.73</td>
+            <td>$51.90</td>
+            <td>B014518STE</td>
+        </tr>
+    
+    
+        <tr>
+            <td>90-9050RB-NB</td>
+            <td>Derby Nylon Cattle Halter for Barn and Turnout
+                <br><i class="line-note"></i></td>
+            <td>Color: Royal Blue
+                <br>Size: Newborn</td>
+            <td>30</td>
+            <td>$1.73</td>
+            <td>$51.90</td>
+            <td>B075JKXJXD</td>
+        </tr>
+    
+    
+        <tr>
+            <td>90-9050RD-CW</td>
+            <td>Derby Nylon Cattle Halter for Barn and Turnout
+                <br><i class="line-note"></i></td>
+            <td>Color: Red
+                <br>Size: Cow</td>
+            <td>30</td>
+            <td>$1.73</td>
+            <td>$51.90</td>
+            <td>B016M2HJ6M</td>
+        </tr>
+    
+    
+        <tr>
+            <td>91-9176BK-1</td>
+            <td>Derby Adjustable Bucket Hanger Strap Nylon
+                <br><i class="line-note"></i></td>
+            <td>Color: Black
+                <br>Size: 30 Inches
+                <br>Lot of: 1</td>
+            <td>150</td>
+            <td>$0.58</td>
+            <td>$87.00</td>
+            <td>B074VD883X</td>
+        </tr>
+    
+    
+        <tr>
+            <td>91-9176BL-1</td>
+            <td>Derby Adjustable Bucket Hanger Strap Nylon
+                <br><i class="line-note"></i></td>
+            <td>Color: Royal Blue
+                <br>Size: 30 Inches
+                <br>Lot of: 1</td>
+            <td>100</td>
+            <td>$0.58</td>
+            <td>$58.00</td>
+            <td>B074VCK9H2</td>
+        </tr>
+    
+    
+        <tr>
+            <td>30-PT3200-HV</td>
+            <td>Paris Tack Grow With Me Horse Halter USA Leather
+                <br><i class="line-note"></i></td>
+            <td>Color: Havana
+                <br>Size: Foal to Weanling</td>
+            <td>150</td>
+            <td>$6.12</td>
+            <td>$918.00</td>
+            <td>B008G1UYVK</td>
+        </tr>
+    
+    
+        <tr>
+            <td>30-PT3200-BK</td>
+            <td>Paris Tack Grow With Me Horse Halter USA Leather
+                <br><i class="line-note"></i></td>
+            <td>Color: Black
+                <br>Size: Foal to Weanling</td>
+            <td>50</td>
+            <td>$6.12</td>
+            <td>$306.00</td>
+            <td>B008G1V27A</td>
+        </tr>
+    </tbody>
+    
+</table>   
+</div>
+<!-- End page body container -->
+<!-- Notice that the script sources below go AFTER the footer
+     If you need a footer tag, it goes IN the body, and BEFORE the script tags--> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="myScripts.js"></script>
+</body>

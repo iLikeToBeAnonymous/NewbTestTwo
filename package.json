@@ -1,0 +1,28 @@
+{
+  "name": "testtwo",
+  "version": "1.0.0",
+  "description": "Trying again",
+  "main": "myapp.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express.js": "^1.0.0",
+    "touch": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "n/a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n/a.git"
+  },
+  "keywords": [
+    "n/a"
+  ],
+  "author": "iLikeToBeAnonymous",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n/a/issues"
+  },
+  "homepage": "https://github.com/n/a#readme"
+}
