@@ -1,18 +1,22 @@
 const express = require('express');
 const app = express();
 const myPort = 3000;
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
-// if the below "address" is typed after "localhost:3000", then the browser will
-// navigate you to a new "page" that just console-logs specific text.
+// host static files from /public
+app.use(express.static('public'));
+
+// respond to GET requests to /helloWorld
 app.get('/helloWorld', (req, res) => {
   res.send('Hello World!')
 });
 
+app.post('/api/image_upload', upload.array('img-input'), (req, res, next) => {
+  console.log(req.files);
+});
+
+// start a web server
 app.listen(myPort, () => {
   console.log('Example server app now listening on port '+myPort+'...')
 });
-// Code below is functionally identical to the code above!
-// app.listen(port, () => console.log('Example app listening on port ${myPort}!'));
-
-
-app.use(express.static('public'));
