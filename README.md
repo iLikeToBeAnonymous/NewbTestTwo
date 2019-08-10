@@ -1,7 +1,7 @@
 # NewbTestTwo
 Newbish dumpster-fire test project for basic Express, MongoDB, and GitHub (if you see this, you probably don't want to look at it unless you're a pro and are up for a good laugh).
 
-##How to install and use (the easy route)
+## How to install and use (the easy route)
 
 ```
   1) Either open the Ubuntu terminal or get the latest Ubuntu terminal for Windows 10
@@ -19,13 +19,12 @@ Newbish dumpster-fire test project for basic Express, MongoDB, and GitHub (if yo
      e) Verify install by checking version (just use "npm -v")
 
 ```
-##Some super-newb commands for bash:
-To download a branch to work on it:
---* `git clone -b <branch name> <repository url>`
+## Some super-newb commands for bash:
+_**To download a branch to work on it:**_
+- `$git clone -b <branch name> <repository url>`
 
-To upload changes to the branch:  
---* `git add <folder>/<filename>`
---* `git commit -m "<your message about the changes here>"`
---* `git push`
---* _You'll then be prompted to enter your username and password
+_**To upload changes to the branch:**_
+- `$git add <filename>`
+- `$git commit -m "<your message about the changes here>"`
+- `$git push` _You'll then be prompted to enter your username and password
 for GitHub_
