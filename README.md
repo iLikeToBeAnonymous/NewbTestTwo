@@ -2,6 +2,8 @@
 Newbish dumpster-fire test project for basic Express, MongoDB, and GitHub (if you see this, you probably don't want to look at it unless you're a pro and are up for a good laugh).
 
 How to install and use (the easy route)
+
+```
   1) Either open the Ubuntu terminal or get the latest Ubuntu terminal for Windows 10
      The version I'm using at the time of this writing is version 18.04
   2) From the terminal:
@@ -14,6 +16,6 @@ How to install and use (the easy route)
           OR
         nodejs -v
      d) $ sudo apt install npm
-     e) Verify install by checking version (just use "npm -v")
+     e) Verify install by checking version (just use "npm -v")```
  
          
