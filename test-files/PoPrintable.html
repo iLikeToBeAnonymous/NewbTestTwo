@@ -1,0 +1,293 @@
+<div id="document">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<div class="edit-section" id="edit-section-header">
+		<!--Template Starts: Header-->
+		<div id="header" style="height: 82px;">
+
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr>
+						<td style="width: 50%;"><img src="/webfiles/RoyalInternationUS/layouts/images/logo.jpg?T=636931620057461686" border="0" style="height: 60px;" alt="" class="fr-fic fr-dii"></td>
+						<td style="text-align: right;">
+
+							<h1 id="document-heading" style="font-size: 14pt; color: #808080;">Purchase Order</h1>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!--Template Ends: Header-->
+		<div class="container-fluid" id="basicOrderInfo">
+			<!-- <table border="0" cellpadding="0" cellspacing="0" style="width: 100%;"> -->
+
+			<table class="table table-bordered table-sm">
+				<thead>
+					<tr>
+						<th>Created Date</th>
+						<th>ETD</th>
+						<th>Ref</th>
+						<th>Supplier Inv No</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>%%ATT:Date%%</td>
+						<td>%%ATT:DueDate%%</td>
+						<td>%%ATT:TransactionRef%%</td>
+						<td>%%ATT:CustomerRef%%</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- <div style="margin-bottom: 10px; border-bottom: solid 1px #cccccc; width: 100%;"> </div> -->
+	<div class="edit-section" id="edit-section-address">
+
+		<table border="0" cellpadding="0" cellspacing="5" width="100%">
+			<tbody>
+				<tr valign="top">
+					<td align="left" valign="top" width="50%">
+						<div class="address">
+							<div class="primary-colour"><strong>Supplier:</strong></div>
+							<div><strong>%%ATT:BillingCompany%%</strong> %%ATT:BillingRecipient%% %%ATT:BillingAddressDetails%%
+
+								<p id="contact-details">
+									<br>
+								</p>
+							</div>
+						</div>
+					</td>
+					<td align="left" valign="top" width="50%">
+						<div class="address">
+							<div class="primary-colour"><strong>Ship To:</strong></div>
+							<div><strong>%%ATT:DeliveryCompany%%</strong> %%ATT:DeliveryRecipient%% %%ATT:DeliveryAddressDetails%%
+
+								<p id="delivery-instructions"><strong><em>%%ATT:DeliveryInstructions%%</em></strong></p>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br>
+	<div class="edit-section" id="edit-section-lineitems">
+    <span>
+		<table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Barcode</th>
+          <th>Product Name</th>
+          <th>Options</th>
+          <th>Qty</th>
+          <th>Unit Price</th>
+          <th>Subtotal</th></tr>
+        </thead>
+      </table>
+      <!--Loop Starts: Items-->
+      <table border="0" cellpadding="2" cellspacing="0" class="lineitems" style="width: 100%; break-inside: avoid; table-layout: fixed;">
+        <tbody>
+          <tr>
+            <td>%%Loop:Code%%</td>
+            <td>%%Loop:Barcode%%</td>
+            <td>%%Loop:Name%%<br><i class="line-note">%%Loop:LineNote%%</i></td>
+            <td>%%Loop:Variations%%</td>
+            <td>%%Loop:ExchangeQty%%</td>
+            <td>%%Loop:UnitPriceText%%</td>
+            <td>%%Loop:Total%%</td>
+          </tr>
+          <!-- <tr id="size-grid-row">
+            <td colspan="3">&nbsp;</td>
+            <td colspan="4">%%SizeGrid%%</td>
+          </tr> -->
+        </tbody>
+      </table>
+    <!--Loop Ends: Items-->
+    </span></div>
+	<div>
+		<div style="border-bottom: solid 1px #cccccc; width: 100%;">&nbsp;</div>
+
+		<table style="width: 100%;">
+			<tbody>
+				<tr>
+					<td style="width: 50%; vertical-align: top;">
+						<br>
+						<div class="edit-section" id="payment-terms"><strong>Payment Terms</strong>
+
+							<p>%%ATT:PaymentTerms%%</p>
+							<div id="extended-terms">
+								<br>
+							</div>
+						</div>
+						<!--Template Starts: Payments-->
+						<div>
+
+							<h3>Payments</h3>
+							<div style="margin-top: 10px;">
+
+								<table border="0" cellpadding="2" cellspacing="0" class="lineitems" width="100%">
+									<thead>
+										<tr>
+											<th>&nbsp;</th>
+											<th>Payments</th>
+											<th>Method</th>
+											<th>Ref</th>
+											<th style="text-align: right;">Amount</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!--Loop Starts: Payments-->
+										<tr>
+											<td><em>%%Loop:Comment%%</em></td>
+											<td>%%Loop:Date%%</td>
+											<td>%%Loop:Method%%</td>
+											<td>%%Loop:Ref%%</td>
+											<td style="text-align: right;">%%Loop:Amount%%</td>
+										</tr>
+										<!--Loop Ends: Payments-->
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--Template Ends: Payments-->
+						<!--Template Starts: BackOrders-->
+						<div>
+
+							<h3>On Back Order</h3>
+
+							<table border="0" cellpadding="2" cellspacing="0" class="lineitems backorder" width="100%">
+								<thead>
+									<tr>
+										<th>Code</th>
+										<th>Item</th>
+										<th>Options</th>
+										<th>Qty</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!--Loop Starts: BackOrders-->
+									<tr>
+										<td>%%Loop:Code%%</td>
+										<td>%%Loop:Name%%</td>
+										<td>%%Loop:Options%%</td>
+										<td style="text-align: right;">%%Loop:Qty%%</td>
+									</tr>
+									<!--Loop Ends: BackOrders-->
+								</tbody>
+							</table>
+						</div>
+						<!--Template Ends: BackOrders-->
+					</td>
+					<td align="right" style="width: 50%;">
+
+						<table border="0" cellpadding="5" cellspacing="0" style="margin-right: 0px;">
+							<tbody>
+								<tr>
+									<td style="text-align: right; width: 140px;">Product Cost:</td>
+									<td style="text-align: right; width: 100px;">%%ATT:ProductCost%%</td>
+								</tr>
+								<!--Template Starts: Surcharge-->
+								<tr>
+									<td align="right">Surcharge: %%ATT:SurchargeDescription%%</td>
+									<td align="right">%%ATT:Surcharge%%</td>
+								</tr>
+								<!--Template Ends: Surcharge-->
+								<tr>
+									<td align="right" style="border-bottom: solid 1px gray;">Delivery Details:</td>
+									<td align="right" style="border-bottom: solid 1px gray;"><em>%%ATT:FreightDescription%%</em> %%ATT:DeliveryCost%%</td>
+								</tr>
+								<!--Template Starts: Discount-->
+								<tr>
+									<td align="right">Discount: %%ATT:DiscountDescription%%</td>
+									<td align="right">%%ATT:Discount%%</td>
+								</tr>
+								<!--Template Ends: Discount-->
+								<tr>
+									<td align="right">Sub&nbsp;Total:</td>
+									<td align="right">%%ATT:SubTotal%%</td>
+								</tr>
+								<tr>
+									<td align="right">%%ATT:TaxName%% (%%ATT:TaxRate%% %):</td>
+									<td align="right">%%ATT:TaxAmount%%</td>
+								</tr>
+								<tr>
+									<td>&nbsp;</td>
+									<td align="right">&nbsp;</td>
+								</tr>
+								<tr>
+									<td align="right" class="primary-colour"><strong>Tax Invoice Total (%%ATT:CurrencyName%%):</strong></td>
+									<td align="right"><strong>%%ATT:GrandTotal%%</strong></td>
+								</tr>
+								<tr>
+									<td align="right" class="primary-colour"><strong>Total Paid (%%ATT:CurrencyName%%):</strong></td>
+									<td align="right"><strong>%%ATT:TotalPaid%%</strong></td>
+								</tr>
+								<tr>
+									<td align="right" class="primary-colour"><strong>Outstanding (%%ATT:CurrencyName%%):</strong></td>
+									<td align="right"><strong>%%ATT:Outstanding%%</strong></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="margin: 20px 0 13px 0; border-bottom: solid 1px #cccccc; width: 100%;">
+			<br>
+		</div>
+	</div>
+	<!--Template Starts: Footer-->
+	<!-- Cin7 Setup: Friday, 9 February 2018 9:49 a.m. -->
+	<div id="footer" style="height: 80px; width: 700px; page-break-inside:avoid;">
+
+		<table style="width: 100%;">
+			<tbody>
+				<tr>
+					<td style="width: 99%;">
+
+						<table border="0" width="100%">
+							<tbody>
+								<tr>
+									<td style="vertical-align: top; width: 33%;"><strong>Royal International LLC</strong>
+										<br>
+									</td>
+									<td style="vertical-align: top; width: 33%;">7900 Whipple Avenue NW
+										<br>North Canton, OH 44720
+										<br>United States</td>
+									<td style="vertical-align: top; width: 33%;">
+										<!--Template Starts: Contact-->
+
+										<table border="0" cellpadding="0" cellspacing="0" width="100%">
+											<tbody>
+												<tr>
+													<td class="primary-colour" width="30">P</td>
+													<td>330-494-4066</td>
+												</tr>
+												<tr>
+													<td class="primary-colour">E</td>
+													<td>sales@derbyoriginals.com</td>
+												</tr>
+												<tr>
+													<td class="primary-colour">W</td>
+													<td>DerbyOriginals.com
+														<a href=""></a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<!--Template Ends: Contact-->
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!--Template Ends: Footer-->
+	<div id="page-terms">
+		<br>
+	</div>
+</div>
