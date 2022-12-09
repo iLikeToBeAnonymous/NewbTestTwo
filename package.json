@@ -4,7 +4,7 @@
   "description": "Trying again",
   "main": "myapp.js",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express.js": "^1.0.0",
     "multer": "^1.4.1"
   },
